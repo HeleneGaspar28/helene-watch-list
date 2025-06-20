@@ -1,0 +1,25 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('cinema.jpg') %>)">
+  All movie lists
+</div>
+
+<div class="row justify-content-center">
+  <% @lists.each do |list| %>
+    <div class="col-md-2 mb-4 mt-4">
+      <%= link_to list_path(list), class: "text-decoration-none" do %>
+        <div class="card bg-dark text-white border-0">
+          <% if list.photo.attached? %>
+            <%= image_tag list.photo, class: "card-img", alt: list.name %>
+          <% else %>
+            <%= image_tag "clapperboard.jpg", class: "card-img", alt: list.name %>
+          <% end %>
+          <div class="card-img-overlay d-flex align-items-center justify-content-center">
+            <h5 class="card-title text-center fw-bold fs-4"><%= list.name %></h5>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to "create new list", new_list_path(@list), class: "btn btn-success btn-lg mt-4 w-25" %>
+
+</div>
